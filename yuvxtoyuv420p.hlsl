@@ -35,7 +35,7 @@ VertexOut VShader(VertexIn vin) {
     return vout;
 };
 
-//input yuv444 o_height * o_height
+//input yuv444 o_width * o_height
 //output yuv420p (o_width/4) * (o_height*1.5)
 
 float4 PShader(VertexOut pin) : SV_Target{
@@ -115,7 +115,7 @@ float4 PShader(VertexOut pin) : SV_Target{
 
         //calc as w * (h_d2)
 
-        float pixel_offset = floor(y * o_width * 2.0 + x * 8.0) + 0.2;
+        float pixel_offset = floor(y * o_width * 2.0 + x * 8.0) + 0.1;
 
         //map to original (x,y)
         y = floor(pixel_offset / o_width * 2.0);
