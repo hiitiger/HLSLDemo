@@ -38,7 +38,7 @@ VertexOut VShader(VertexIn vin) {
 //input yuv444 o_width * o_height
 //output yuv420p (o_width/4) * (o_height*1.5)
 
-float4 PShader(VertexOut pin) : SV_Target{
+float4 PShaderYUV420P(VertexOut pin) : SV_Target{
 
     float y = floor(pin.Tex.y * o_height + 0.1);
     float x = floor(pin.Tex.x * o_width + 0.1);
@@ -162,9 +162,9 @@ float4 PShader(VertexOut pin) : SV_Target{
 
 };
 
-technique11 PlanarYUV420 {
+technique11 DrawPlanarYUV420 {
 pass P0{
     SetVertexShader(CompileShader(vs_5_0, VShader()));
-    SetPixelShader(CompileShader(ps_5_0, PShader()));
+    SetPixelShader(CompileShader(ps_5_0, PShaderYUV420P()));
     }
 }
